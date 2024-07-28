@@ -8,6 +8,6 @@ def fizz_buzz(n):
             print("Buzz")
         else:
             print(i)
-n=input("Введите число: ")
+n=input("Введите число:")
 n=int(n)
 fizz_buzz(n)
