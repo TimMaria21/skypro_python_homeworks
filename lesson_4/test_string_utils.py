@@ -3,29 +3,25 @@ import pytest
 from string_utils import StringUtils
 
 string_util = StringUtils()
+# Test 1. capitilize
 
 
-#Test 1. capitilize
 @pytest.mark.parametrize('string, result', [
-
-# позитивные проверки:
-
-    ("mariya", "Mariya"),#слово в нижнем регистре
-    ("Hello, Dear Friend", "Hello, dear friend"),#первая буква каждого слова в строке, содержащей несколько слов, написана в верхнем регистре
-    ("suMmer", "Summer"),#заглавная буква в середине слова
-    ("time-Out", "Time-out"),#слова со спец символами
-    ("kitty123", "Kitty123"),#слова с цифрами
-    ("tablE", "Table"),#заглавная буква в конце предложения
-    ("JOB", "Job"),#слово состоит полностью из заглавных букв
-    ("THE SUN IS SHINING", "The sun is shining"), #предложение состоит полностью из заглавных букв
-    ("Timofey", "Timofey"),#слово начинается с заглавной буквы 
-
-#Негативные проверки:
-
-    ("", ""), #пустая строка
-    (" friend", " friend"),#слово начинается c пробела
-    ("123kitty", "123kitty"), #числовой первый символ
-    ("! hi, dear friend", "! hi, dear friend"), #строка начинается со спец символа(небуквенное значение)
+    # позитивные проверки:
+    ("mariya", "Mariya"),
+    ("Hello, Dear Friend", "Hello, dear friend"),
+    ("suMmer", "Summer"),
+    ("time-Out", "Time-out"),
+    ("kitty123", "Kitty123"),
+    ("tablE", "Table"),
+    ("JOB", "Job"),
+    ("THE SUN IS SHINING", "The sun is shining"),
+    ("Timofey", "Timofey"),
+    # Негативные проверки:
+    ("", ""),
+    (" friend", " friend"),
+    ("123kitty", "123kitty"),
+    ("! hi, dear friend", "! hi, dear friend"),
 ])
 def test_capitalize(string, result):
     string_util = StringUtils()
@@ -33,22 +29,19 @@ def test_capitalize(string, result):
     assert res == result
 
 
-#Test 2. trim
+# Test 2. trim
 @pytest.mark.parametrize('string, result', [
-
-# позитивные проверки:
-
-    (" cook", "cook"), #пробел перед словом
-    (" tea ", "tea "), #пробел перед словом и в конце 
-    ("  Hello", "Hello"),  # несколько пробелов в начале 
-    ("  Welcome to our home", "Welcome to our home"), # пробелы в начале текста и посередине
-    ("  12345", "12345"), # числа как строка
-# Негативные проверки:
-
-    ("", ""), # пустая строка
-    (" ", ""), # строка состоит только из 1 пробела без иных символов
-    ("friend", "friend"), # отсутсвие пробела перед строкой 
-    ("The sun is shining  ", "The sun is shining  ") # отуствие пробела в начале строки, но наличие его в конце строки
+    # позитивные проверки:
+    (" cook", "cook"),
+    (" tea ", "tea "),
+    ("  Hello", "Hello"),
+    ("  Welcome to our home", "Welcome to our home"),
+    ("  12345", "12345"),
+    # Негативные проверки:
+    ("", ""),
+    (" ", ""),
+    ("friend", "friend"),
+    ("The sun is shining  ", "The sun is shining  ")
 ])
 def test_trim(string, result):
     string_util = StringUtils()
@@ -56,39 +49,33 @@ def test_trim(string, result):
     assert res == result
     print(result)
 
-#Test 3: to_list
-@pytest.mark.parametrize('string, divider, result', [
-    
-#Позитивные проверки:
 
+# Test 3: to_list
+@pytest.mark.parametrize('string, divider, result', [
+    # Позитивные проверки:
     ("first,second,third", ",", ["first", "second", "third"]),
-    ("mouse!cat!dog","!", ["mouse", "cat", "dog"]),
+    ("mouse!cat!dog", "!", ["mouse", "cat", "dog"]),
     ("blue;red;white", ";", ["blue", "red", "white"]),
     ("1,2,3,4,5", None, ["1", "2", "3", "4", "5"]),
     ("@^%^#^!^*", "^", ["@", "%", "#", "!", "*"]),
     ("1/n2/n3", "/n", ["1", "2", "3"]),
-
-#Негативные проверки:
-
+    # Негативные проверки:
     ("", None, []),
     ("1,2,3,4 5", None, ["1", "2", "3", "4 5"]),
     ("1 2 3 4 5", " ", ["1", "2", "3", "4", "5"]),
     ])
-
-def test_to_list(string, divider, result):   
+def test_to_list(string, divider, result):
     if divider is None:
         res = string_util.to_list(string)
     else:
         res = string_util.to_list(string, divider)
-    
     assert res == result
     print(result)
 
-#Test 4: contains
+
+# Test 4: contains
 @pytest.mark.parametrize('string, symbol, result', [
-
-#Позитивные проверки:
-
+    # Позитивные проверки:
     ("Mariya", "a", True),
     ("list", "t", True),
     ("Timofey  ", "T", True),
@@ -98,26 +85,23 @@ def test_to_list(string, divider, result):
     ("", "", True),
     ("qwerty", "qw", True),
     ("  1234", " ", True),
-    
-#Негативные проверки:
+    # Негативные проверки:
     ("Kitty", "k", False),
     ("pyton", "р", False),
-    ("hello", "x", False),  
-    ("hello", "!", False), 
-    ("", "o", False),  
+    ("hello", "x", False),
+    ("hello", "!", False),
+    ("", "o", False),
     ("hello", "aij", False)
 ])
-
 def test_contains(string, symbol, result):
     string_util = StringUtils()
     res = string_util.contains(string, symbol)
     assert res == result
 
-#Test 5: delete_symbol
+
+# Test 5: delete_symbol
 @pytest.mark.parametrize('string, symbol, result', [
-
-# позитивные проверки:
-
+    # позитивные проверки:
     ("park", "k", "par"),
     ("Street", "r", "Steet"),
     ("Never", "N", "ever"),
@@ -126,25 +110,22 @@ def test_contains(string, symbol, result):
     ("bluish-green", "-", "bluishgreen"),
     ("Thailand", "land", "Thai"),
     ("Sky Pro", " ", "SkyPro"),
-
-# негативные прверки:
+    # негативные прверки:
     ("spoon", "k", "spoon"),
     (" ", " ", ""),
     ("", "", ""),
     ("", "g", ""),
     ("milk", "", "milk")
 ])
-
 def test_delete_symbol(string, symbol, result):
     string_util = StringUtils()
     res = string_util.delete_symbol(string, symbol)
     assert res == result
 
-#Test 6: starts_with
-@pytest.mark.parametrize('string, symbol, result', [
-   
-# позитивные прверки:
 
+# Test 6: starts_with
+@pytest.mark.parametrize('string, symbol, result', [
+    # позитивные прверки:
     ("table", "t", True),
     ("", "", True),
     ("Time", "T", True),
@@ -155,26 +136,22 @@ def test_delete_symbol(string, symbol, result):
     ("98765", "9", True),
     ("list", "", True),
     ("!@#$%^", "!", True),
-
-# негативные прверки:
-
+    # негативные прверки:
     ("Woman", "w", False),
     ("tea", "T", False),
     ("", "s", False),
     ("Test", "e", False),
     (" twenty", "t", False)
 ])
-
 def test_starts_with(string, symbol, result):
     string_util = StringUtils()
     res = string_util.starts_with(string, symbol)
     assert res == result
 
-#Test 7:end_with
-@pytest.mark.parametrize('string, symbol, result', [
-    
-# позитивные проверки:
 
+# Test 7:end_with
+@pytest.mark.parametrize('string, symbol, result', [
+    # позитивные проверки:
     ("month", "h", True),
     ("GIRL", "L", True),
     ("", "", True),
@@ -183,62 +160,51 @@ def test_starts_with(string, symbol, result):
     ("I'm very tired", "d", True),
     ("qwerty1", "1", True),
     ("test", "", True),
-
-# негативные проверки:
-
+    # негативные проверки:
     ("morning", "G", False),
     ("evening", "n", False),
     ("door ", "r", False),
     ("", "s", False)
 ])
-
 def test_end_with(string, symbol, result):
     string_util = StringUtils()
     res = string_util.end_with(string, symbol)
     assert res == result
 
-#Test 8: is_empty
-@pytest.mark.parametrize('string, result', [
-    
-# позитивные примеры:
 
+# Test 8: is_empty
+@pytest.mark.parametrize('string, result', [
+    # позитивные примеры:
     ("", True),
     (" ", True),
     ("  ", True),
-
-   
-#негативные примеры:
+    # негативные примеры:
     ("tree", False),
     (" flower", False),
     ("123", False),
-    ("cat ", False)   
+    ("cat ", False)
 ])
-
 def test_is_empty(string, result):
     string_util = StringUtils()
     res = string_util.is_empty(string)
     assert res == result
 
-#Test 9: list_to_string
+
+# Test 9: list_to_string
 @pytest.mark.parametrize('lst, joiner, result', [
-
-# позитивные примеры:
-
+    # позитивные примеры:
     (["q", "w", "e"], ",", "q,w,e"),
-    ([9,8,7,6,5], None, "9, 8, 7, 6, 5"),
+    ([9, 8, 7, 6, 5], None, "9, 8, 7, 6, 5"),
     (["a", "b", "c"], "", "abc"),
     (["son", "in", "law"], "-", "son-in-law"),
-
-
-# негативные примеры:
+    # негативные примеры:
     ([" ", " ", " "], ",", " , , "),
     ([], None, ""),
     ([], "*", "")
 ])
-
 def test_list_to_string(lst, joiner, result):
     string_util = StringUtils()
-    if joiner == None:
+    if joiner is None:
         res = string_util.list_to_string(lst)
     else:
         res = string_util.list_to_string(lst, joiner)
