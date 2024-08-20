@@ -7,7 +7,6 @@ from selenium.webdriver.common.by import By
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 driver.maximize_window()
 
-
 driver.get("http://the-internet.herokuapp.com/login")
 sleep(2)
 input_field = driver.find_element(By.CSS_SELECTOR, "input[name='username']")

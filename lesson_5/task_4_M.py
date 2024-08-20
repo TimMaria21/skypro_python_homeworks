@@ -12,5 +12,5 @@ modal = "div.modal-footer"
 sleep(2)
 click_button_close = driver.find_element(By.CSS_SELECTOR, modal).click()
 
-sleep(5) 
+sleep(5)
 driver.quit()
