@@ -7,7 +7,7 @@ string_util = StringUtils()
 
 
 @pytest.mark.parametrize('string, result', [
-    # позитивные проверки:
+    # позитивные проверки
     ("mariya", "Mariya"),
     ("Hello, Dear Friend", "Hello, dear friend"),
     ("suMmer", "Summer"),
