@@ -17,4 +17,3 @@ sleep(3)
 input_field.send_keys(999)
 
 sleep(5)
-

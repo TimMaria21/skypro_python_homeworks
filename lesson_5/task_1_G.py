@@ -16,7 +16,6 @@ for new_element in range(1, 6):
 
 button_delete = ".added-manually"
 button_list = driver.find_elements(By.CSS_SELECTOR, button_delete)
-
 print(len(button_list))
 
 sleep(3)

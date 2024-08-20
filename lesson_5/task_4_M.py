@@ -14,3 +14,4 @@ click_button_close = driver.find_element(By.CSS_SELECTOR, modal).click()
 
 sleep(5)
 driver.quit()
+

@@ -9,7 +9,6 @@ driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()
 driver.maximize_window()
 
 driver.get("http://uitestingplayground.com/classattr")
-
 for i in range(3):
     time.sleep(2)
     driver.find_element(By.CSS_SELECTOR, 'button.btn-primary').click()

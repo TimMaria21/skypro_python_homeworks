@@ -18,5 +18,6 @@ sleep(2)
 login = ".radius"
 click_login = driver.find_element(By.CSS_SELECTOR, login).click()
 
+
 sleep(5)
 driver.quit()
